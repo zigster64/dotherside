@@ -191,6 +191,18 @@ DOS_API bool DOS_CALL dos_qpixmap_isNull(DosPixmap *vptr);
 /// \brief Functions related to the QQuickStyle class
 /// @{
 
+/// \brief Add to the stylePath for the QtQuickControls2 style
+DOS_API void DOS_CALL dos_qquickstyle_add_style_path(const char *style);
+
+/// \brief Get a list of the available QtQuickControls2 styles
+DOS_API char **DOS_CALL dos_qquickstyle_available_styles();
+
+/// \brief Get the name of the current QtQuickControls2 style
+DOS_API char *DOS_CALL dos_qquickstyle_name();
+
+/// \brief Set the QtQuickControls2 style
+/// \brief Set the QtQuickControls2 style
+/// \brief Set the QtQuickControls2 style
 /// \brief Set the QtQuickControls2 style
 DOS_API void DOS_CALL dos_qquickstyle_set_style(const char *style);
 
@@ -199,6 +211,21 @@ DOS_API void DOS_CALL dos_qquickstyle_set_fallback_style(const char *style);
 
 /// @}
 
+    pub fn path(self: QQuickStyle) []const u8 {
+        return dos.dos_qquickstyle_path();
+    }
+
+    pub fn setFallbackStyle(self: QQuickStyle, style: [*c]const u8) void {
+        dos.dos_qquickstyle_set_fallback_style(style);
+    }
+
+    pub fn setStyle(self: QQuickStyle, style: [*c]const u8) void {
+        dos.dos_qquickstyle_set_style(style);
+    }
+
+    pub fn stylePathList(self: QQuickStyle) [][]const u8 {
+        return dos.dos_qquickstyle_style_path_list(style);
+    }
 
   
 /// \defgroup QQuickView QQuickView

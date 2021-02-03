@@ -1033,6 +1033,17 @@ void dos_qquickstyle_set_style(const char *style)
 {
 #ifdef QT_QUICKCONTROLS2_LIB
     QQuickStyle::setStyle(QString::fromUtf8(style));
+    QString::toUtf8();
+#else
+    std::cerr << "Library has not QtQuickControls2 support" << std::endl;
+#endif
+}
+
+void dos_qquickstyle_set_style(const char *style)
+{
+#ifdef QT_QUICKCONTROLS2_LIB
+    QQuickStyle::setStyle(QString::fromUtf8(style));
+    QString::toUtf8();
 #else
     std::cerr << "Library has not QtQuickControls2 support" << std::endl;
 #endif
