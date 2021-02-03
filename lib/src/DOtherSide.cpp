@@ -1029,34 +1029,62 @@ int dos_qdeclarative_qmlregistersingletontype(const ::QmlRegisterType *cArgs)
     return DOS::dosQmlRegisterSingletonType(std::move(args));
 }
 
-void dos_qquickstyle_set_style(const char *style)
-{
 #ifdef QT_QUICKCONTROLS2_LIB
-    QQuickStyle::setStyle(QString::fromUtf8(style));
-    QString::toUtf8();
-#else
-    std::cerr << "Library has not QtQuickControls2 support" << std::endl;
-#endif
+
+void dos_quickstyle_add_style_path(const chare *style) 
+{
+
 }
 
 void dos_qquickstyle_set_style(const char *style)
 {
-#ifdef QT_QUICKCONTROLS2_LIB
     QQuickStyle::setStyle(QString::fromUtf8(style));
-    QString::toUtf8();
-#else
-    std::cerr << "Library has not QtQuickControls2 support" << std::endl;
-#endif
 }
 
 void dos_qquickstyle_set_fallback_style(const char *style)
 {
-#ifdef QT_QUICKCONTROLS2_LIB
     QQuickStyle::setFallbackStyle(QString::fromUtf8(style));
-#else
-    std::cerr << "Library has no QtQuickControls2 support" << std::endl;
-#endif
 }
+
+#else
+
+void dos_quickstyle_add_style_path(const chare *style) 
+{
+    std::cerr << "Library has no QtQuickControls2 support" << std::endl;
+}
+
+void dos_qquickstyle_set_style(const char *style)
+{
+    std::cerr << "Library has no QtQuickControls2 support" << std::endl;
+}
+
+void dos_qquickstyle_set_fallback_style(const char *style)
+{
+    std::cerr << "Library has no QtQuickControls2 support" << std::endl;
+}
+
+#endif
+
+/// \brief Add to the stylePath for the QtQuickControls2 style
+DOS_API void DOS_CALL dos_qquickstyle_add_style_path(const char *style);
+
+/// \brief Get a list of the available QtQuickControls2 styles
+DOS_API char **DOS_CALL dos_qquickstyle_available_styles();
+
+/// \brief Get the name of the current QtQuickControls2 style
+DOS_API char *DOS_CALL dos_qquickstyle_name();
+
+/// \brief Get the path of the current QtQuickControls2 style
+DOS_API char *DOS_CALL dos_quickstyle_path();
+
+/// \brief Set the QtQuickControls2 style
+DOS_API void DOS_CALL dos_qquickstyle_set_style(const char *style);
+
+/// \brief Set the QtQuickControls2 fallback style
+DOS_API void DOS_CALL dos_qquickstyle_set_fallback_style(const char *style);
+
+/// \brief Get the list of paths for QtQuickControls2 styles
+DOS_API char **DOS_CALL dos_qquickstyle_style_path_list();
 
 void dos_qcoreapplication_process_events(DosQEventLoopProcessEventFlag flags)
 {
