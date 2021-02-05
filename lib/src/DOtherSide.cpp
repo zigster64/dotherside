@@ -1048,7 +1048,7 @@ void dos_qquickstyle_set_fallback_style(const char *style)
 
 #else
 
-void dos_quickstyle_add_style_path(const chare *style) 
+void dos_quickstyle_add_style_path(const char *style) 
 {
     std::cerr << "Library has no QtQuickControls2 support" << std::endl;
 }
